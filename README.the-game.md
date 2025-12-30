@@ -85,7 +85,6 @@ ne lisez pas les instructions ci dessous
   - Speculative generality
   - Parallel inheritance
 
-
 ## Instructions
 
 npm install -g npm@latest
