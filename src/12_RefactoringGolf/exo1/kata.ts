@@ -1,13 +1,14 @@
 /* eslint-disable */
+const EMPTY_SYMBOL = " ";
 
 // read the code
 export class Game {
-  private _lastSymbol = " ";
+  private _lastSymbol = EMPTY_SYMBOL;
   private _board: Board = new Board();
 
   public Play(symbol: string, x: number, y: number): void {
     //if first move
-    if (this._lastSymbol == " ") {
+    if (this._lastSymbol == EMPTY_SYMBOL) {
       //if player is X
       if (symbol == "O") {
         throw new Error("Invalid first player");
@@ -18,7 +19,7 @@ export class Game {
       throw new Error("Invalid next player");
     }
     //if not first move but play on an already played tile
-    else if (this._board.TileAt(x, y).Symbol != " ") {
+    else if (this._board.TileAt(x, y).Symbol != EMPTY_SYMBOL) {
       throw new Error("Invalid position");
     }
 
@@ -30,9 +31,9 @@ export class Game {
   public Winner(): string {
     //if the positions in first row are taken
     if (
-      this._board.TileAt(0, 0)!.Symbol != " " &&
-      this._board.TileAt(0, 1)!.Symbol != " " &&
-      this._board.TileAt(0, 2)!.Symbol != " "
+      this._board.TileAt(0, 0)!.Symbol != EMPTY_SYMBOL &&
+      this._board.TileAt(0, 1)!.Symbol != EMPTY_SYMBOL &&
+      this._board.TileAt(0, 2)!.Symbol != EMPTY_SYMBOL
     ) {
       //if first row is full with same symbol
       if (
@@ -45,9 +46,9 @@ export class Game {
 
     //if the positions in 2nd row are taken
     if (
-      this._board.TileAt(1, 0)!.Symbol != " " &&
-      this._board.TileAt(1, 1)!.Symbol != " " &&
-      this._board.TileAt(1, 2)!.Symbol != " "
+      this._board.TileAt(1, 0)!.Symbol != EMPTY_SYMBOL &&
+      this._board.TileAt(1, 1)!.Symbol != EMPTY_SYMBOL &&
+      this._board.TileAt(1, 2)!.Symbol != EMPTY_SYMBOL
     ) {
       //if middle row is full with same symbol
       if (
@@ -60,9 +61,9 @@ export class Game {
 
     //if the positions in 2nd row are taken
     if (
-      this._board.TileAt(2, 0)!.Symbol != " " &&
-      this._board.TileAt(2, 1)!.Symbol != " " &&
-      this._board.TileAt(2, 2)!.Symbol != " "
+      this._board.TileAt(2, 0)!.Symbol != EMPTY_SYMBOL &&
+      this._board.TileAt(2, 1)!.Symbol != EMPTY_SYMBOL &&
+      this._board.TileAt(2, 2)!.Symbol != EMPTY_SYMBOL
     ) {
       //if middle row is full with same symbol
       if (
@@ -73,7 +74,7 @@ export class Game {
       }
     }
 
-    return " ";
+    return EMPTY_SYMBOL;
   }
 }
 
@@ -89,7 +90,7 @@ class Board {
   constructor() {
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        const tile: Tile = { X: i, Y: j, Symbol: " " };
+        const tile: Tile = { X: i, Y: j, Symbol: EMPTY_SYMBOL };
         this._plays.push(tile);
       }
     }
