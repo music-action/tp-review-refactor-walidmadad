@@ -29,51 +29,12 @@ export class Game {
   }
 
   public Winner(): string {
-    //if the positions in first row are taken
-    if (
-      this._board.TileAt(0, 0)!.Symbol != EMPTY_SYMBOL &&
-      this._board.TileAt(0, 1)!.Symbol != EMPTY_SYMBOL &&
-      this._board.TileAt(0, 2)!.Symbol != EMPTY_SYMBOL
-    ) {
-      //if first row is full with same symbol
-      if (
-        this._board.TileAt(0, 0)!.Symbol == this._board.TileAt(0, 1)!.Symbol &&
-        this._board.TileAt(0, 2)!.Symbol == this._board.TileAt(0, 1)!.Symbol
-      ) {
-        return this._board.TileAt(0, 0)!.Symbol;
-      }
+    for (let row = 0; row < 3; row++) {
+      const a = this._board.TileAt(row, 0)!.Symbol;
+      const b = this._board.TileAt(row, 1)!.Symbol;
+      const c = this._board.TileAt(row, 2)!.Symbol;
+      if (a !== EMPTY_SYMBOL && a === b && b === c) return a;
     }
-
-    //if the positions in 2nd row are taken
-    if (
-      this._board.TileAt(1, 0)!.Symbol != EMPTY_SYMBOL &&
-      this._board.TileAt(1, 1)!.Symbol != EMPTY_SYMBOL &&
-      this._board.TileAt(1, 2)!.Symbol != EMPTY_SYMBOL
-    ) {
-      //if middle row is full with same symbol
-      if (
-        this._board.TileAt(1, 0)!.Symbol == this._board.TileAt(1, 1)!.Symbol &&
-        this._board.TileAt(1, 2)!.Symbol == this._board.TileAt(1, 1)!.Symbol
-      ) {
-        return this._board.TileAt(1, 0)!.Symbol;
-      }
-    }
-
-    //if the positions in 2nd row are taken
-    if (
-      this._board.TileAt(2, 0)!.Symbol != EMPTY_SYMBOL &&
-      this._board.TileAt(2, 1)!.Symbol != EMPTY_SYMBOL &&
-      this._board.TileAt(2, 2)!.Symbol != EMPTY_SYMBOL
-    ) {
-      //if middle row is full with same symbol
-      if (
-        this._board.TileAt(2, 0)!.Symbol == this._board.TileAt(2, 1)!.Symbol &&
-        this._board.TileAt(2, 2)!.Symbol == this._board.TileAt(2, 1)!.Symbol
-      ) {
-        return this._board.TileAt(2, 0)!.Symbol;
-      }
-    }
-
     return EMPTY_SYMBOL;
   }
 }
