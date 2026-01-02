@@ -3,6 +3,10 @@ const PLAYER_O = 'O';
 
 const BOARD_SIZE = 3;
 
+const ERROR_INVALID_FIRST_PLAYER = 'Invalid first player';
+const ERROR_INVALID_NEXT_PLAYER = 'Invalid next player';
+const ERROR_INVALID_POSITION = 'Invalid position';
+
 export class Game {
   private _lastSymbol = EMPTY;
   private _board: Board = new Board();
@@ -19,20 +23,20 @@ export class Game {
   private validateFirstMove(player: string) {
     if (this._lastSymbol == EMPTY) {
       if (player == PLAYER_O) {
-        throw new Error("Invalid first player");
+        throw new Error(ERROR_INVALID_FIRST_PLAYER);
       }
     }
   }
 
   private validatePlayer(player: string) {
     if (player == this._lastSymbol) {
-      throw new Error("Invalid next player");
+      throw new Error(ERROR_INVALID_NEXT_PLAYER);
     }
   }
 
   private validatePositionIsEmpty(x: number, y: number) {
     if (this._board.TileAt(x, y).Symbol != EMPTY) {
-      throw new Error("Invalid position");
+      throw new Error(ERROR_INVALID_POSITION);
     }
   }
 
